@@ -1,6 +1,14 @@
-*.iml
-node_modules/
+# os
 .DS_Store
-.elasticbeanstalk/
-.ebextensions/
-.idea/
+
+# node
+node_modules
+
+# editors
+.vscode
+.idea
+
+# logs
+logs
+server/logs
+yarn-error.log
