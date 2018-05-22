@@ -220,6 +220,37 @@ Whether Chrome follows a redirect on the first request if a redirect is encounte
 
 `Default: false`
 
+### remoteDebuggingPort
+```
+var prerender = require('./lib');
+
+var server = prerender({
+    remoteDebuggingPort: 9222
+});
+
+server.start();
+```
+
+Whether Chrome uses an alternate debugging port than the default. This can be useful for allowing multiple instances to run on a single machine, or to specify which port to run debugger on if 9222 is not a port you can utilize on that particular server.
+**Also note that if you are using chromeFlags, you will have to manually specify the remoteDebuggingPort in the chromeFlags**
+
+```
+var prerender = require('./lib');
+
+var remoteDebuggingPort = 9222;
+
+var server = prerender({
+    remoteDebuggingPort: remoteDebuggingPort,
+    chromeFlags: ['--headless', '--disable-gpu', '--remote-debugging-port=' + remoteDebuggingPort, '--hide-scrollbars']
+});
+
+server.start();
+```
+
+`Default: 9222`
+
+
+
 ## Plugins
 
 We use a plugin system in the same way that Connect and Express use middleware. Our plugins are a little different and we don't want to confuse the prerender plugins with the [prerender middleware](#middleware), so we opted to call them "plugins".
